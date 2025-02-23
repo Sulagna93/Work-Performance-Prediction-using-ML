@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Health & Work Performance Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Additional styles for the form from Code 2 */
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+        .form-container input,
+        .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .result {
+            font-size: 1.5em;
+            color: #4CAF50;
+            text-align: center;
+            margin-top: 20px;
+        }
+        #credits {
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 10px 0; /* Vertical padding */
+    text-align: center; /* Centered text */
+    border-top: 2px solid #dee2e6; /* Top border to separate from content above */
+    font-weight: bold; /* Bold text */
+}
+
+    </style>
+</head>
+<body class="bg-gray-100">
+    
+    <!-- Navigation Bar -->
+    <nav class="bg-blue-600 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <ul class="flex space-x-4">
+                <li><a href="#home" class="hover:underline">Home</a></li>
+                <li><a href="#about" class="hover:underline">About</a></li>
+                <li><a href="#disclaimer" class="hover:underline">Disclaimer</a></li>
+                <li><a href="#learn-more" class="hover:underline">Learn More</a></li>
+                <li><a href="#predict" class="hover:underline">Prediction Tool</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Home Section -->
+    <section id="home" class="text-center py-16">
+        <h2 class="text-3xl font-bold">Welcome to Work Performance Prediction</h2>
+        <p class="mt-4 text-lg">Analyze your sleep patterns and predict your work performance based on sleep health data</p>
+    </section>
+
+    
+
+    <!-- Prediction Form Section (from Code 2) -->
+    <section class="py-8">
+        <div class="prediction-container">
+            
+        <div class="form-container">
+            <h1 class="text-2xl font-bold text-center underline">Work Performance Prediction</h1>
+            <form action="/predict" method="post" class="mt-4">
+                <label for="Age"><b>Age:</b></label>
+                <input type="number" name="Age" required>
+            
+                <label for="Sleep Duration"><b>Sleep Duration (in hours):</b></label>
+                <input type="number" name="Sleep Duration" required>
+            
+                <label for="Stress Level"><b>Stress Level (1-5):</b></label>
+                <input type="number" name="Stress Level" required>
+            
+                <label for="Sleep Disorder"><b>Sleep Disorder:</b></label>
+                <select name="Sleep Disorder" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="None">None</option>
+                    <option value="Insomnia">Insomnia</option>
+                    <option value="Sleep Apnea">Sleep Apnea</option>
+                </select>
+            
+                <label for="Gender"><b>Gender:</b></label>
+                <select name="Gender" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            
+                <label for="BMI Category"><b>BMI Category:</b></label>
+                <select name="BMI Category" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Underweight">Underweight</option>
+                    <option value="Normal Weight">Normal Weight</option>
+                    <option value="Overweight">Overweight</option>
+                    <option value="Obese">Obesity</option>
+                </select>
+            
+                <h2><b><input type="submit" value="Predict"></b></h2>
+            </form>
+            
+            <!-- Display prediction result -->
+    {% if prediction_text %}
+    <div class="mt-4 p-4 bg-green-100 text-green-700 rounded">
+        {{ prediction_text }}
+    </div>
+    {% endif %}
+
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="bg-white p-8 shadow-md m-4 rounded">
+        <h2 class="text-2xl font-bold">About</h2>
+        <p class="mt-2">
+            The "Sleep Health Analysis and Work Performance Prediction" project aims to explore the intricate relationship between sleep patterns and workplace productivity. By leveraging machine learning techniques, this initiative seeks to predict an individual's work performance based on various sleep-related metrics.
+        </p>
+    
+        <h3 class="text-xl font-semibold mt-4">Significance of the Project</h3>
+        <p class="mt-2">
+            Understanding the link between sleep quality and work efficiency is crucial, as inadequate sleep can lead to health issues and decreased productivity. This project seeks to inform strategies that enhance both personal well-being and organizational outcomes.
+        </p>
+    
+        <h3 class="text-xl font-semibold mt-4">Potential Applications</h3>
+        <ul class="list-disc list-inside mt-2">
+            <li><strong>Personal Health Management:</strong> Empower individuals to monitor and improve their sleep habits, leading to better daily functioning.</li>
+            <li><strong>Organizational Productivity:</strong> Provide insights for employers to promote sleep hygiene and work-life balance among employees.</li>
+            <li><strong>Healthcare Interventions:</strong> Assist healthcare providers in identifying and supporting patients at risk of sleep-related performance issues.</li>
+        </ul>
+    
+        <p class="mt-4">
+            By integrating sleep analysis with performance prediction, this project aims to enhance well-being and efficiency in both personal and professional spheres.
+        </p>
+    </section>
+    
+    
+    <!-- Disclaimer Section -->
+    <section id="disclaimer" class="bg-white p-8 shadow-md m-4 rounded">
+        <h2 class="text-2xl font-bold">Disclaimer</h2>
+        <p class="mt-2">This tool provides insights based on data but does not replace professional medical advice.</p>
+    </section>
+    
+    <!-- Learn More Section -->
+    <section id="learn-more" class="bg-white p-8 shadow-md m-4 rounded">
+        <h2 class="text-2xl font-bold">Learn More</h2>
+        <p class="mt-2">Understand the relationship between sleep disorders and work performance with our research-backed insights.</p>
+        <p class="mt-2">Explore these resources to deepen your understanding of the relationship between sleep health and work performance:</p>
+    <ul class="list-disc list-inside mt-4">
+        <li>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/20887396/" class="text-blue-600 hover:underline" target="_blank">
+                Sleep Disorders and Work Performance: Findings from the 2008 National Sleep Foundation Sleep in America poll
+            </a>
+        </li>
+        <li>
+            <a href="https://www.sleepfoundation.org/sleep-hygiene/good-sleep-and-job-performance?utm_source=chatgpt.com" class="text-blue-600 hover:underline" target="_blank">
+                The Link Between Sleep and Job Performance
+            </a>
+        </li>
+        <li>
+            <a href="https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2022.866750/full?utm_source=chatgpt.com" class="text-blue-600 hover:underline" target="_blank">
+                The Interplay Between Poor Sleep and Work-Related Health
+            </a>
+        </li>
+        <li>
+            <a href="https://jcsm.aasm.org/doi/10.5664/jcsm.10040?utm_source=chatgpt.com" class="text-blue-600 hover:underline" target="_blank">
+                The Association Between Sleep Disorders, Employment, and Income Among Adults in the United States
+            </a>
+        </li>
+    </ul>
+    </section>
+    
+   
+    <section id="credits" class="bg-gray-200 p-4 text-center">
+        <p class="font-semibold">Made by: Sulagna Mandal, Udisha Mukherjee, Sayani Thakur, Sanchari Mardanya, Shrijeet Ghosh</p>
+    </section>
+    
+    
+    <!-- Footer -->
+    <footer class="text-center bg-blue-600 text-white p-4 mt-4">
+        <p>&copy; 2025 Sleep Health Analysis. All rights reserved.</p>
+    </footer>
+</body>
+</html>
